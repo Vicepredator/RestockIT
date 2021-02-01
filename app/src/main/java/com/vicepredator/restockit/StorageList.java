@@ -3,6 +3,7 @@ package com.vicepredator.restockit;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,5 +26,8 @@ public class StorageList extends AppCompatActivity {
         MyAdapter2 adapter = new MyAdapter2(this,productsNeeded);
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(this));
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new recyclerHelper(adapter));
+        itemTouchHelper.attachToRecyclerView(recycler);
+
     }
 }

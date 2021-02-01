@@ -13,6 +13,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vicepredator.restockit.database.Product;
+import com.vicepredator.restockit.database.ProductsDao;
+import com.vicepredator.restockit.database.dbHandler;
 
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.MyViewHoler> {
 
     Context ctx;
     List<Product> products;
+    ProductsDao productDB = dbHandler.getDatabase(ctx).ProductsDao();
 
     public MyAdapter2(Context c, List<Product> p){
         ctx = c;
@@ -45,6 +48,15 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.MyViewHoler> {
     @Override
     public int getItemCount() {
         return products.size();
+    }
+
+    public Context getContext() {
+        return ctx;
+    }
+
+    public void deleteProduct(int pos) {
+        productDB.deleteProduct(products.get(pos));
+        notifyItemRemoved(pos);
     }
 
     public class MyViewHoler extends RecyclerView.ViewHolder {
