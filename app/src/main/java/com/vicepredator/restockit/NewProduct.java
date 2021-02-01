@@ -36,6 +36,8 @@ public class NewProduct extends AppCompatActivity {
                     Toast.makeText(NewProduct.this, "You have to insert a code",Toast.LENGTH_LONG).show();
                 }else if(Integer.parseInt(qty.getText().toString()) <= 0){
                     Toast.makeText(NewProduct.this, "Quantity can't be less than 0",Toast.LENGTH_LONG).show();
+                }else if(productName.getText().toString().isEmpty()){
+                    Toast.makeText(NewProduct.this, "You have to insert a name",Toast.LENGTH_LONG).show();
                 }else{
                     Product p = new Product();
                     p.code = productCode.getText().toString();
