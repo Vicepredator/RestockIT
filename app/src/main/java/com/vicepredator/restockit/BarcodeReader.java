@@ -3,7 +3,6 @@ package com.vicepredator.restockit;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.hardware.Camera;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -14,7 +13,6 @@ import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 import java.io.IOException;
-import java.util.List;
 
 /*
 * Barcode reader by Vicepredator11
@@ -40,17 +38,17 @@ import java.util.List;
 public class BarcodeReader {
     private static final String NEEDED_PERMISSION = "android.permission.CAMERA";
     private static final int REQUEST_ID = 1;
-    private BarcodeDetector detector;
-    private SurfaceView surfaceView;
+    private final BarcodeDetector detector;
+    private final SurfaceView surfaceView;
     private CameraSource cameraSource;
-    private Context context;
-    private Activity activity;
+    private final Context context;
+    private final Activity activity;
     private String lastCode = "";
 
     private BarcodeReaderListener listener;
 
     public interface BarcodeReaderListener{
-        public void onCodeScanned(String code);
+        void onCodeScanned(String code);
     }
 
     public BarcodeReader(Activity act, SurfaceView surface) {
@@ -60,7 +58,7 @@ public class BarcodeReader {
         this.listener = null;
         detector = new BarcodeDetector.Builder(context).setBarcodeFormats(Barcode.QR_CODE | Barcode.EAN_13).build();
         if (!detector.isOperational()) {
-            Toast.makeText(context, "Unable to activare the barcode reader", Toast.LENGTH_LONG);
+            Toast.makeText(context, "Unable to activate the barcode reader", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -112,15 +110,14 @@ public class BarcodeReader {
 
     private void activateCamera() {
         if (ActivityCompat.checkSelfPermission(context, NEEDED_PERMISSION) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(activity, NEEDED_PERMISSION)) {
-            } else {
+            if (!ActivityCompat.shouldShowRequestPermissionRationale(activity, NEEDED_PERMISSION)){
                 ActivityCompat.requestPermissions(activity, new String[]{NEEDED_PERMISSION},REQUEST_ID);
             }
         } else {
             try {
                 cameraSource.start(surfaceView.getHolder());
             } catch (IOException e) {
-                Toast.makeText(context,"Errore while starting camera",Toast.LENGTH_LONG);
+                Toast.makeText(context,"Errore while starting camera",Toast.LENGTH_LONG).show();
             }
         }
     }

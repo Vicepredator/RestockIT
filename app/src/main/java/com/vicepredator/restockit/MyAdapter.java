@@ -34,7 +34,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHoler> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHoler holder, int position) {
         holder.name.setText(products.get(position).productName);
-        holder.qty.setText(products.get(position).minQty-products.get(position).avlQty+"");
+        holder.qty.setText(products.get(position).minQty-products.get(position).avlQty);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHoler> {
         return products.size();
     }
 
-    public class MyViewHoler extends RecyclerView.ViewHolder {
+    public static class MyViewHoler extends RecyclerView.ViewHolder {
 
         TextView name,qty;
 

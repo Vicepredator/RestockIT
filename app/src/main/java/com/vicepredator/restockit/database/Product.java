@@ -2,15 +2,8 @@ package com.vicepredator.restockit.database;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
-import androidx.room.Dao;
-import androidx.room.Database;
 import androidx.room.Entity;
-import androidx.room.Insert;
 import androidx.room.PrimaryKey;
-import androidx.room.Query;
-import androidx.room.RoomDatabase;
-
-import java.util.List;
 
 @Entity(tableName = "products_table")
 public class Product {
@@ -27,6 +20,10 @@ public class Product {
 
     @ColumnInfo(name = "avlQty")
     public int avlQty;
+
+    public Product() {
+        code = null;
+    }
 }
 
 

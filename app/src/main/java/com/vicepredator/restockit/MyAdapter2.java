@@ -1,15 +1,12 @@
 package com.vicepredator.restockit;
 
 import android.content.Context;
-import android.util.Log;
-import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vicepredator.restockit.database.Product;
@@ -40,8 +37,8 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.MyViewHoler> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHoler holder, int position) {
         holder.name.setText(products.get(position).productName);
-        holder.minqty.setText(products.get(position).minQty+"");
-        holder.avlqty.setText(products.get(position).avlQty+"");
+        holder.minqty.setText(products.get(position).minQty);
+        holder.avlqty.setText(products.get(position).avlQty);
         holder.code.setText(products.get(position).code);
     }
 
@@ -59,7 +56,7 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.MyViewHoler> {
         notifyItemRemoved(pos);
     }
 
-    public class MyViewHoler extends RecyclerView.ViewHolder {
+    public static class MyViewHoler extends RecyclerView.ViewHolder {
 
         TextView name,code,minqty,avlqty;
 

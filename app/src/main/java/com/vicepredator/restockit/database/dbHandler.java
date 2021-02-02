@@ -10,15 +10,6 @@ import androidx.room.RoomDatabase;
 public abstract class dbHandler extends RoomDatabase {
     private static dbHandler INSTANCE;
     public abstract ProductsDao ProductsDao();
-    public static dbHandler getInMemoryDatabase(Context context) {
-        if (INSTANCE == null) {
-            INSTANCE =
-                    Room.inMemoryDatabaseBuilder(context.getApplicationContext(), dbHandler.class)
-                            .allowMainThreadQueries()
-                            .build();
-        }
-        return INSTANCE;
-    }
     public static dbHandler getDatabase(Context context) {
         if (INSTANCE == null) {
             INSTANCE =
@@ -27,8 +18,5 @@ public abstract class dbHandler extends RoomDatabase {
                             .build();
         }
         return INSTANCE;
-    }
-    public static void destroyInstance() {
-        INSTANCE = null;
     }
 }

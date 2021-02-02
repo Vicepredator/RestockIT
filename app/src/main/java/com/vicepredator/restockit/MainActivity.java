@@ -8,8 +8,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.View;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -22,21 +20,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Button btnShopListShow = (Button) findViewById(R.id.btnShowShopList);
+        Button btnShopListShow = findViewById(R.id.btnShowShopList);
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Floating Button
-                startActivity(new Intent(MainActivity.this,Scan.class));
-            }
+        fab.setOnClickListener(view -> {
+            //Floating Button
+            startActivity(new Intent(MainActivity.this,Scan.class));
         });
-        btnShopListShow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,ShopList.class));
-            }
-        });
+        btnShopListShow.setOnClickListener(view -> startActivity(new Intent(MainActivity.this,ShopList.class)));
 
 
     }

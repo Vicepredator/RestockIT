@@ -1,17 +1,13 @@
 package com.vicepredator.restockit;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
 
 import com.vicepredator.restockit.database.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ShopList extends AppCompatActivity {

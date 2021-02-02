@@ -1,7 +1,6 @@
 package com.vicepredator.restockit;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -13,12 +12,9 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.vicepredator.restockit.R;
-import com.vicepredator.restockit.MyAdapter2;
-
 public class recyclerHelper extends ItemTouchHelper.SimpleCallback {
 
-    private MyAdapter2 adapter;
+    private final MyAdapter2 adapter;
 
     public recyclerHelper(MyAdapter2 adapter) {
         super(0, ItemTouchHelper.LEFT/* | ItemTouchHelper.RIGHT*/);
@@ -26,7 +22,7 @@ public class recyclerHelper extends ItemTouchHelper.SimpleCallback {
     }
 
     @Override
-    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+    public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
         return false;
     }
 
@@ -41,34 +37,18 @@ public class recyclerHelper extends ItemTouchHelper.SimpleCallback {
 
             builder.setTitle("Deleting");
             builder.setMessage("Vuoi eliminare la nota?");
-            builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                    adapter.deleteProduct(pos);
-
-                }
-            });
-            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-
-                    adapter.notifyItemChanged(viewHolder.getAdapterPosition());
-
-                }
-            });
+            builder.setPositiveButton("Si", (dialog, which) -> adapter.deleteProduct(pos));
+            builder.setNegativeButton("No", (dialog, which) -> adapter.notifyItemChanged(viewHolder.getAdapterPosition()));
 
             AlertDialog dialog = builder.create();
             dialog.show();
 
         }
-        else{
-            //adapter.editProduct(pos);
-        }
+
     }
 
     @Override
-    public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+    public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
 
         Drawable icon;
