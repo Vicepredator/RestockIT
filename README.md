@@ -14,6 +14,7 @@ When you click on the plus button on the bottom-left corner you can scan a produ
 - With just one touch, you can instantly know what's missing in your home
 
 ### Future implementations:
+- [x] Possibility to delete products
 - [ ] Possibility to edit products
 - [ ] consistency with system theme
 
